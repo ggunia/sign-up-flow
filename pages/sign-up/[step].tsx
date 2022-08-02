@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormikProvider, useFormik } from 'formik'
+import { Form, FormikProvider } from 'formik'
 import { Typography } from '@mui/material'
 
 import {
@@ -9,7 +9,6 @@ import {
   useSignUp
 } from '../../components/sign-up'
 import { Container } from '@mui/system'
-
 
 const Steps = () => {
   const { formik, step } = useSignUp()
