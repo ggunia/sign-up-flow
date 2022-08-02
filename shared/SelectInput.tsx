@@ -9,7 +9,7 @@ import { useField } from "formik"
 
 type SelectInputProps = {
   name: string
-  options: Array<{ value: string; label: string }>
+  options: Array<{ value: string | number; label: string }>
 } & SelectProps
 
 export const SelectInput = ({ name, options, ...selectProps }: SelectInputProps) => {
@@ -25,7 +25,7 @@ export const SelectInput = ({ name, options, ...selectProps }: SelectInputProps)
         {...inputProps}
       >
         {options.map(option => (
-          <MenuItem dense value={option.value}>
+          <MenuItem dense key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
         ))}

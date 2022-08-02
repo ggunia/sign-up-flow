@@ -31,10 +31,10 @@ export const useSignUp = () => {
 
   React.useEffect(
     () => {
-      if (step === 'credentials') return
-      if (formik.dirty) return
+      // if (step === 'credentials') return
+      // if (formik.dirty) return
 
-      router.push('/sign-up/credentials')
+      // router.push('/sign-up/credentials')
     },
     [step]
   )

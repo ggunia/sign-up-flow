@@ -13,5 +13,4 @@ export const initialValues = {
   // vehicle information
   make: '',
   model: '',
-  file: null
 }
