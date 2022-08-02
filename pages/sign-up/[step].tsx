@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from "next/router"
 import { Form, FormikProvider, useFormik } from 'formik'
 import { Typography } from '@mui/material'
 
@@ -7,37 +6,13 @@ import {
   Credentials,
   BankInformation,
   VehicleInformation,
-  initialValues,
-  validationSchema
+  useSignUp
 } from '../../components/sign-up'
 import { Container } from '@mui/system'
 
-const Steps = () => {
-  const router = useRouter()
-  const { step } = router.query
-  const formik = useFormik({
-    initialValues,
-    validationSchema: validationSchema[step as 'credentials' | 'bank-information' | 'vehicle-information'],
-    onSubmit: () => {
-      alert('here !!')
-    }
-  })
 
-  const component = React.useMemo(
-    () => {
-      switch (step) {
-        case 'credentials':
-          return <Credentials />
-        case 'bank-information':
-          return <BankInformation />
-        case 'vehicle-information':
-          return <VehicleInformation />
-        default:
-          return null
-      }
-    },
-    [step]
-  )
+const Steps = () => {
+  const { formik, step } = useSignUp()
 
   return (
     <FormikProvider value={formik}>
@@ -56,7 +31,9 @@ const Steps = () => {
             Please fill all fields
           </Typography>
 
-          {component}
+          {step === 'credentials' && <Credentials />}
+          {step === 'bank-information' && <BankInformation />}
+          {step === 'vehicle-information' && <VehicleInformation />}
         </Container>
       </Form>
     </FormikProvider>

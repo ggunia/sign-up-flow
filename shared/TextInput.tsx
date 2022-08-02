@@ -4,13 +4,15 @@ import { useField } from 'formik'
 type TextInputProps = { name: string } & TextFieldProps
 
 export const TextInput = ({ name, ...props }: TextInputProps) => {
-  const [inputProps, { error }] = useField(name)
+  const [inputProps, { error, touched }] = useField(name)
+
+  const hasError = touched && Boolean(error)
 
   return (
     <TextField
       size='small'
-      helperText={error}
-      error={Boolean(error)}
+      FormHelperTextProps={{ style: { marginLeft: 4 } }}
+      {...hasError ? { helperText: error, error: true } : {}}
       {...inputProps}
       {...props}
     />
