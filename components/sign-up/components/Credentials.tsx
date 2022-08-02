@@ -1,7 +1,6 @@
 import React from "react"
-import { useRouter } from 'next/router'
 import { Grid, Button } from '@mui/material'
-import { TextInput } from "../../shared"
+import { TextInput } from "../../../shared"
 
 export const Credentials = () => {
   return (

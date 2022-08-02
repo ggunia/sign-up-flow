@@ -1,25 +1,23 @@
 import React from 'react'
 import { useRouter } from "next/router"
-import { FormikProvider, useFormik } from 'formik'
+import { Form, FormikProvider, useFormik } from 'formik'
 import { Typography } from '@mui/material'
 
 import {
   Credentials,
   BankInformation,
-  VehicleInformation
+  VehicleInformation,
+  initialValues,
+  validationSchema
 } from '../../components/sign-up'
 import { Container } from '@mui/system'
 
-const Form = () => {
+const Steps = () => {
   const router = useRouter()
   const { step } = router.query
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      make: '',
-      model: '',
-    },
+    initialValues,
+    validationSchema: validationSchema[step as 'credentials' | 'bank-information' | 'vehicle-information'],
     onSubmit: () => {
       alert('here !!')
     }
@@ -43,24 +41,26 @@ const Form = () => {
 
   return (
     <FormikProvider value={formik}>
-      <Container maxWidth='sm'>
-        <Typography variant='h5' marginTop={5}>
-          Registration multi step form
-        </Typography>
+      <Form onSubmit={formik.handleSubmit}>
+        <Container maxWidth='sm'>
+          <Typography variant='h5' marginTop={5}>
+            Registration multi step form
+          </Typography>
 
-        <Typography
-          variant='body2'
-          marginBottom={3}
-          marginTop={0.5}
-          color="grey"
-        >
-          Please fill all fields
-        </Typography>
+          <Typography
+            variant='body2'
+            marginBottom={3}
+            marginTop={0.5}
+            color="grey"
+          >
+            Please fill all fields
+          </Typography>
 
-        {component}
-      </Container>
+          {component}
+        </Container>
+      </Form>
     </FormikProvider>
   )
 }
 
-export default Form
+export default Steps

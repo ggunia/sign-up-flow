@@ -1,3 +1,2 @@
-export * from './Credentials'
-export * from './BankInformation'
-export * from './VehicleInformation'
+export * from './components'
+export * from './form'

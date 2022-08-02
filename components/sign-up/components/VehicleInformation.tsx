@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material"
-import { SelectInput, TextInput } from "../../shared"
+import { SelectInput, TextInput } from "../../../shared"
 
 export const VehicleInformation = () => {
   return (
