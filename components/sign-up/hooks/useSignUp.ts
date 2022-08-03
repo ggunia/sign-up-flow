@@ -2,6 +2,7 @@ import React from "react"
 import { useRouter } from "next/router"
 import { useFormik } from "formik"
 
+import { useSignUpService } from "../../../services"
 import { initialValues, validationSchema } from '../form'
 
 type Step = 'credentials'
@@ -10,6 +11,7 @@ type Step = 'credentials'
 
 export const useSignUp = () => {
   const router = useRouter()
+  const signUp = useSignUpService()
   const { step } = router.query
   const formik = useFormik({
     initialValues,
@@ -17,15 +19,20 @@ export const useSignUp = () => {
     onSubmit: (values) => {
       if (step === 'credentials') {
         router.push('/sign-up/bank-information')
-        return
+        return Promise.resolve()
       }
 
       if (step === 'bank-information') {
         router.push('/sign-up/vehicle-information')
-        return
+        return Promise.resolve()
       }
 
-      alert(JSON.stringify(values))
+      const { file, ...body } = values
+      const formData = new FormData()
+      formData.set('file', file as unknown as Blob)
+      formData.set('data', JSON.stringify(body))
+
+      return signUp.mutateAsync(formData)
     }
   })
 

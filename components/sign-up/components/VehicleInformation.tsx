@@ -1,13 +1,16 @@
 import { Button, Grid } from "@mui/material"
-import { useField } from "formik"
+import { useField, useFormikContext } from "formik"
 
 import { useListMakes, useListModels } from "../../../services"
-import { SelectInput, TextInput } from "../../../shared"
+import { FileInput, SelectInput } from "../../../shared"
 
 export const VehicleInformation = () => {
   const { data = [] } = useListMakes()
+  const { isSubmitting } = useFormikContext()
   const [{ value }] = useField('make')
   const { data: models = [] } = useListModels(value)
+
+  console.log(isSubmitting)
 
   return (
     <Grid display="grid" gap={2}>
@@ -25,9 +28,11 @@ export const VehicleInformation = () => {
         />
       </Grid>
 
-      <TextInput name="file" type="file" />
+      <FileInput name="file" />
 
-      <Button variant="contained">Submit</Button>
+      <Button type="submit" variant="contained" disabled={isSubmitting}>
+        Submit
+      </Button>
     </Grid>
   )
 }

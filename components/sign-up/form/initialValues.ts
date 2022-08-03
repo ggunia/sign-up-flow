@@ -1,3 +1,5 @@
+import { Blob } from "buffer";
+
 export const initialValues = {
   // credentials
   email: '',
@@ -13,4 +15,5 @@ export const initialValues = {
   // vehicle information
   make: '',
   model: '',
+  file: null
 }
