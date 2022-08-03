@@ -47,7 +47,7 @@ export const useSignUp = () => {
 
       router.push('/sign-up/credentials')
     },
-    [step]
+    [step, formik.dirty, router]
   )
 
   return { formik, step }
