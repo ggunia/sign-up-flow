@@ -1,7 +1,7 @@
 # Multi step sign up flow using
 
 ### Bootstrap project
-- npm run dev
+- yarn dev
 
 ---
 
