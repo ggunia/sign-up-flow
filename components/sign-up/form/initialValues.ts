@@ -1,5 +1,3 @@
-import { Blob } from "buffer";
-
 export const initialValues = {
   // credentials
   email: '',
