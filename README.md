@@ -1,5 +1,11 @@
 # Multi step sign up flow using
 
+### Bootstrap project
+- npm run dev
+
+---
+
+### Stack used
 - [Next.js](https://nextjs.org/docs)
 - [Formik](https://github.com/jaredpalmer/formik)
 - [React Query](https://github.com/TanStack/query)
