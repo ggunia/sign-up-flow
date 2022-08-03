@@ -19,11 +19,13 @@ export const useSignUp = () => {
     onSubmit: (values) => {
       if (step === 'credentials') {
         router.push('/sign-up/bank-information')
+        formik.setTouched({})
         return Promise.resolve()
       }
 
       if (step === 'bank-information') {
         router.push('/sign-up/vehicle-information')
+        formik.setTouched({})
         return Promise.resolve()
       }
 
@@ -32,7 +34,9 @@ export const useSignUp = () => {
       formData.set('file', file as unknown as Blob)
       formData.set('data', JSON.stringify(body))
 
-      return signUp.mutateAsync(formData)
+      return signUp
+        .mutateAsync(formData)
+        .then(() => router.push('/done'))
     }
   })
 

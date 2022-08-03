@@ -3,7 +3,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectProps
+  SelectProps,
+  FormHelperText
 } from "@mui/material"
 import { useField } from "formik"
 
@@ -13,7 +14,9 @@ type SelectInputProps = {
 } & SelectProps
 
 export const SelectInput = ({ name, options, ...selectProps }: SelectInputProps) => {
-  const [inputProps] = useField(name)
+  const [inputProps, { touched, error }] = useField(name)
+
+  const hasError = touched && Boolean(error)
 
   return (
     <FormControl fullWidth>
@@ -30,6 +33,12 @@ export const SelectInput = ({ name, options, ...selectProps }: SelectInputProps)
           </MenuItem>
         ))}
       </Select>
+
+      {hasError && (
+        <FormHelperText style={{ marginLeft: 4 }} error>
+          {error}
+        </FormHelperText>
+      )}
     </FormControl>
   )
 }

@@ -10,8 +10,6 @@ export const VehicleInformation = () => {
   const [{ value }] = useField('make')
   const { data: models = [] } = useListModels(value)
 
-  console.log(isSubmitting)
-
   return (
     <Grid display="grid" gap={2}>
       <Grid display="grid" gridAutoFlow="column" columnGap={2}>

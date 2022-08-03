@@ -20,6 +20,9 @@ export const FileInput = ({ name, ...props }: FileInputProps) => {
     <TextField
       size="small"
       type="file"
+      inputProps={{
+        accept: 'image/png, image/gif, image/jpeg'
+      }}
       {...hasError ? { helperText: error, error: true } : {}}
       {...inputProps}
       {...props}

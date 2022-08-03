@@ -29,11 +29,7 @@ export default function handler(
     }
 
     const body = JSON.parse(data as string)
-    const json = { ...body, file }
 
-    fs.writeFileSync('data.json', JSON.stringify(json));
-
-    const fileStream = fs.createReadStream('data.json');
-    fileStream.pipe(res);
+    res.status(200).json({ ...body, file })
   })
 }
